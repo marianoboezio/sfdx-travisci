@@ -20,5 +20,5 @@ before_install:
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
   --username $USERNAME --setdefaultdevhubusername -a HubOrg
 script:
-- if [commit_message = "deploy full"]; then sfdx force:source:deploy -u HubOrg
+- if [commit_message = "deploy full"]; then sfdx force:source:deploy -u HubOrg else echo "Skip full deployment!";
 - sfdx force:apex:test:run -u HubOrg --wait 10
