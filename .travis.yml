@@ -17,8 +17,9 @@ before_install:
 - export PATH=./sfdx/$(pwd):$PATH
 - sfdx --version
 - sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
-  --username $USERNAME --setdefaultdevhubusername -a HubOrg
+- - |
+  if [ "$TRAVIS_COMMIT_MESSAGE" == "deploy full" ]; then 
+    sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
 script:
 - |
   if [ "$TRAVIS_COMMIT_MESSAGE" == "deploy full" ]; then 
