@@ -20,12 +20,11 @@ before_install:
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
   --username $USERNAME --setdefaultdevhubusername -a HubOrg
 script:
-- sfdx force:source:convert -d deployPrepared/
-- sfdx force:mdapi:deploy -d deployPrepared/ -u HubOrg
-- if [$TRAVIS_COMMIT_MESSAGE = "deploy full"]; then 
-    sfdx force:source:deploy -u HubOrg; 
-  else 
-    echo "Commit message" + $TRAVIS_COMMIT_MESSAGE; 
-    echo "Skip deployment to full"; 
+- if [$TRAVIS_COMMIT_MESSAGE = "deploy full"]; then |
+    sfdx force:source:convert -d deployPrepared/ |
+    sfdx force:mdapi:deploy -d deployPrepared/ -u HubOrg |
+  else |
+    echo "Commit message" + $TRAVIS_COMMIT_MESSAGE; |
+    echo "Skip deployment to full"; |
   fi
 - sfdx force:apex:test:run -u HubOrg --wait 10
