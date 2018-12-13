@@ -21,11 +21,11 @@ before_install:
   --username $USERNAME --setdefaultdevhubusername -a HubOrg
 script:
 - |
-  if ["$TRAVIS_COMMIT_MESSAGE" == "deploy full"]; then 
+  if [ "$TRAVIS_COMMIT_MESSAGE" == "deploy full" ]; then 
     sfdx force:source:convert -d deployPrepared/
     sfdx force:mdapi:deploy -d deployPrepared/ -u HubOrg
   else 
-    echo "Commit message" + $TRAVIS_COMMIT_MESSAGE; 
+    echo "Commit message " $TRAVIS_COMMIT_MESSAGE; 
     echo "Skip deployment to full"; 
   fi
 - echo $TRAVIS_COMMIT;
