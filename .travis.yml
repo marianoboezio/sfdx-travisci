@@ -25,7 +25,7 @@ script:
 - |
   if [ "$DEPLOY_ENV" == "FULL" ]; then 
     sfdx force:source:convert -d deployPrepared/
-    sfdx force:mdapi:deploy -d deployPrepared/ -u HubOrg -r mytest --wait 10
+    sfdx force:mdapi:deploy -d deployPrepared/ -u HubOrg -l RunSpecifiedTests -r mytest --wait 10
     sfdx force:apex:test:run -u HubOrg --wait 10
   else 
     echo "Skip deployment to full"; 
