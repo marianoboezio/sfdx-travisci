@@ -23,7 +23,7 @@ before_install:
   fi
 script:
 - |
-  if [ $TESTS_TO_RUN == NULL ]; then 
+  if [ -z "$TESTS_TO_RUN" ]; then 
     TESTS_TO_RUN="mytest"
   fi
 - |
