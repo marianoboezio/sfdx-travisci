@@ -2,7 +2,7 @@ sudo: true
 os: trusty
 cache: false
 env:
-- DEPLOY_ENV="DEV"
+- DEPLOY_ENV="Test"
 before_install:
 - openssl aes-256-cbc -K $encrypted_527a7bf57f17_key -iv $encrypted_527a7bf57f17_iv
   -in assets/server.key.enc -out assets/server.key -d
